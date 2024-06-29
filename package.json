@@ -1,0 +1,23 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "The React Nihal Sandhu",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nihalsandhu09/React.git"
+  },
+  "keywords": [],
+  "author": "Nihal Sandhu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nihalsandhu09/React/issues"
+  },
+  "homepage": "https://github.com/nihalsandhu09/React#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
+}
