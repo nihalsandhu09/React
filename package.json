@@ -1,16 +1,16 @@
 {
   "name": "react",
   "version": "1.0.0",
-  "description": "The React Nihal Sandhu",
-  "main": "app.js",
+  "description": "React",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": " npx parcel index.html",
+    "build": "npx parcel build index.html"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nihalsandhu09/React.git"
   },
-  "keywords": [],
   "author": "Nihal Sandhu",
   "license": "ISC",
   "bugs": {
@@ -19,5 +19,9 @@
   "homepage": "https://github.com/nihalsandhu09/React#readme",
   "devDependencies": {
     "parcel": "^2.12.0"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
