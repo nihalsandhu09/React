@@ -30,3 +30,15 @@ Different build for dev and prod bundles
 - Body {Searchy Bar , Restaurants Cards Container , RestauranCards - image - Name of Restaurant star Rating , cuisine , etc }
 - Footer {Copywright , Links , Adddress Contact }
   \*/
+
+Two types of Export / Import
+-Default Export/Import
+
+export default component
+import component from "Path"
+
+# React Hooks
+
+(Normal |Js Utility Function )
+-useState() - state variables in React
+useEffect()

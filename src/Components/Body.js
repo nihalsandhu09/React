@@ -10,11 +10,19 @@ const Body = () => {
     setList(filterlist);
   };
 
+  const RegenrateAllRes = () => {
+    let list2 = resList;
+    setList(list2);
+  };
+
   return (
     <div className="body">
-      <div className="filter">
+      <div className="filters">
         <button className="filter-btn" onClick={filterTopRated}>
-          Top Rated Restaurant{" "}
+          Top Rated Restaurant
+        </button>
+        <button className="all-res filter-btn" onClick={RegenrateAllRes}>
+          Regenrate all Res
         </button>
       </div>
 
