@@ -1,9 +1,11 @@
-import ReastaurantCard from "./RestaurantCard";
+import RestaurantCard from "./RestaurantCard";
 // import resList from "../Utilis/mockData";
 import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchData();
@@ -11,15 +13,28 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      " https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    console.log(json);
-
-    setList(
-      json.data?.cards[2].card?.card?.gridElements?.infoWithStyle.restaurants
-    );
+    try {
+      const data = await fetch(
+        " https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      );
+      const json = await data.json();
+      console.log(json);
+      const cardWithRestaurants = json.data?.cards?.find(
+        (card) => card.card?.card?.gridElements?.infoWithStyle?.restaurants
+      );
+      const restaurant =
+        cardWithRestaurants?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants || [];
+      setList(
+        // json.data?.cards[2].card?.card?.gridElements?.infoWithStyle.restaurants
+        restaurant
+      );
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // const fetcanotherData = async () => {
@@ -35,11 +50,14 @@ const Body = () => {
   //   );
   // };
 
-  console.log("Body rendered ");
   const filterTopRated = () => {
     let filterlist = list.filter((res) => res.info.avgRating > 4.5);
     setList(filterlist);
   };
+
+  if (loading) {
+    return <Shimmer />;
+  }
 
   return (
     <div className="body">
@@ -51,7 +69,7 @@ const Body = () => {
 
       <div className="res-container">
         {list.map((restaurant) => (
-          <ReastaurantCard key={restaurant.info.id} resData={restaurant} />
+          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
     </div>
