@@ -6,7 +6,8 @@ import Shimmer from "./Shimmer";
 const Body = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [searchText, setSearchText] = useState("");
+  const [filterdRestaurant, setfilterRestaurant] = useState([]);
   useEffect(() => {
     fetchData();
     // fetcanotherData();
@@ -25,10 +26,8 @@ const Body = () => {
       const restaurant =
         cardWithRestaurants?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants || [];
-      setList(
-        // json.data?.cards[2].card?.card?.gridElements?.infoWithStyle.restaurants
-        restaurant
-      );
+      setList(restaurant);
+      setfilterRestaurant(restaurant);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -55,20 +54,38 @@ const Body = () => {
     setList(filterlist);
   };
 
-  if (loading) {
-    return <Shimmer />;
-  }
-
-  return (
+  const handleSearch = () => {
+    const filteredResults = list.filter((res) =>
+      res.info.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setfilterRestaurant(filteredResults);
+  };
+  return loading ? (
+    <Shimmer></Shimmer>
+  ) : (
     <div className="body">
-      <div className="filters">
+      <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button className="searc-btn " onClick={handleSearch}>
+            Search
+          </button>
+        </div>
+
         <button className="filter-btn" onClick={filterTopRated}>
           Top Rated Restaurant
         </button>
       </div>
 
       <div className="res-container">
-        {list.map((restaurant) => (
+        {filterdRestaurant.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>

@@ -85,6 +85,10 @@ html,body{
 
 .filter{
     padding:  5px 10px;
+    display: flex;
+    align-items: center;
+   justify-content: center;
+   gap: 50px;
 }
 .filter-btn{
     padding: 5px 10px;
@@ -119,4 +123,17 @@ html,body{
     display: inline-block;
     vertical-align: top;
     
+}
+
+.login{
+    padding:0 30px ;
+    cursor: pointer;
+}
+
+
+.search{
+    display: flex;
+    gap: 20px;
+    width: 200px;
+
 }
