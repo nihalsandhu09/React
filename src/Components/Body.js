@@ -16,8 +16,11 @@ const Body = () => {
   const fetchData = async () => {
     try {
       const data = await fetch(
-        " https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
+      // const data = await fetch(
+      //   "https://www.swiggy.com/mapi/homepage/getCards?lat=12.9715987&lng=77.5945627"
+      // );
       const json = await data.json();
       console.log(json);
       const cardWithRestaurants = json.data?.cards?.find(
@@ -51,7 +54,7 @@ const Body = () => {
 
   const filterTopRated = () => {
     let filterlist = list.filter((res) => res.info.avgRating > 4.5);
-    setList(filterlist);
+    setfilterRestaurant(filterlist);
   };
 
   const handleSearch = () => {
