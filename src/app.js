@@ -5,9 +5,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./Components/Header";
-
 import Body from "./Components/Body";
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import About from "./Components/About";
+import Contact from "./Components/Contact";
 const APPLayOut = () => {
   console.log(<Body></Body>);
 
@@ -19,6 +20,22 @@ const APPLayOut = () => {
   );
 };
 
+const appRouter = createBrowserRouter([
+  // arraysof objects
+  {
+    path: "/",
+    element: <APPLayOut />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
+  },
+]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<APPLayOut />);
+root.render(<RouterProvider router={appRouter} />);
