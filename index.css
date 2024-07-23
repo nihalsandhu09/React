@@ -30,7 +30,7 @@ html,body{
     display: flex;
     gap: 20px;
 }
-.nav-items > ul > li {
+.nav-items > ul > li{
 
     list-style-type: none;
     padding:  0px  20px;

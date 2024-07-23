@@ -42,3 +42,10 @@ import component from "Path"
 (Normal |Js Utility Function )
 -useState() - state variables in React
 useEffect()
+
+<!-- dont create usestate outside of your component and not in if else  and for loop  -->
+
+# 2 types Routing in web apps
+
+- client side routing - just a component changes known as single page application
+- Server side routing - like we use htmll pages go from other pages and pages comes from servers by netwrks call
