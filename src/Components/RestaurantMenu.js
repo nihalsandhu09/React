@@ -35,10 +35,6 @@ const RestaurantMenu = () => {
       (c) => c.card?.itemCards
     )?.card?.itemCards;
 
-  //   const { name, cuisines, costForTwoMessage } = resInfo;
-  //   const { itemCards } =
-  //     resInfo.cards[5].groupedCard.cardGroupMap.REGULAR.cards[1].card.card
-  //       .itemCards;
   console.log(itemCards);
   return (
     <div className="menu">
