@@ -137,3 +137,9 @@ html,body{
     width: 200px;
 
 }
+
+
+.link{
+  text-decoration: none;
+  color: inherit;
+}

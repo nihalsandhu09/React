@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "../Utilis/constants";
+import { CDN_URL } from "../Utilis/constants";
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
 
@@ -28,26 +29,31 @@ const RestaurantMenu = () => {
     return <Shimmer />;
   }
   const { name, cuisines, costForTwoMessage } =
-    resInfo?.cards?.[2]?.card?.card?.info;
+    resInfo?.cards?.[2]?.card?.card?.info || {};
 
+  // const itemCards =
+  //   resInfo?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.find(
+  //     (c) => c.card?.itemCards
+  //   )?.card?.itemCards || [];
   const itemCards =
-    resInfo?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.find(
-      (c) => c.card?.itemCards
-    )?.card?.itemCards;
-
+    resInfo?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
+      ?.card?.itemCards || [];
   console.log(itemCards);
   return (
     <div className="menu">
       <h1 className="name">{name}</h1>
       <p className="cuisine">
-        {cuisines.join(",") || "N/A"} ---- {costForTwoMessage}
+        {cuisines.length > 0 ? cuisines.join(",") : "N/A"} ---- {cuisines}
+        {costForTwoMessage}
       </p>
-
+      <h4> Menu</h4>
       <ul>
         {itemCards.map((item) => (
-          <li key={item.card.info.id}>
-            {item.card.info.name} -{"Rs"} {item.card.info.price / 100}
-          </li>
+          <div key={item.card.info.id}>
+            <img src={CDN_URL + item.card.info.imageId}></img>
+            {item.card.info.name} -{"Rs"}
+            {item.card.info.price / 100}{" "}
+          </div>
         ))}
       </ul>
     </div>
