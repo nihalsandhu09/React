@@ -143,3 +143,9 @@ html,body{
   text-decoration: none;
   color: inherit;
 }
+ ul > div >  .res-menu-img{
+    width: 100px;
+    height: 100px;
+    
+
+}

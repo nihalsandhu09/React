@@ -36,7 +36,7 @@ const RestaurantMenu = () => {
   //     (c) => c.card?.itemCards
   //   )?.card?.itemCards || [];
   const itemCards =
-    resInfo?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
+    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
       ?.card?.itemCards || [];
   console.log(itemCards);
   return (
@@ -50,9 +50,13 @@ const RestaurantMenu = () => {
       <ul>
         {itemCards.map((item) => (
           <div key={item.card.info.id}>
-            <img src={CDN_URL + item.card.info.imageId}></img>
             {item.card.info.name} -{"Rs"}
             {item.card.info.price / 100}{" "}
+            <img
+              className="res-menu-img"
+              src={CDN_URL + item.card.info.imageId}
+            ></img>
+            <hr></hr>
           </div>
         ))}
       </ul>
