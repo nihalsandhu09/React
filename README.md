@@ -49,3 +49,6 @@ useEffect()
 
 - client side routing - just a component changes known as single page application
 - Server side routing - like we use htmll pages go from other pages and pages comes from servers by netwrks call
+
+
+LInk is Wrappper over anchor tag  behind the scene its convert to anchor tag  becyuase browser understand anchor tag 
