@@ -10,7 +10,7 @@ class UserClass extends React.Component {
         Location: "Default",
       },
     };
-    // console.log(this.props.name + " Child constructor");
+    console.log(this.props.name + " Child constructor");
   }
 
   async componentDidMount() {
@@ -22,10 +22,17 @@ class UserClass extends React.Component {
     });
 
     console.log(json);
+    console.log(this.props.name + "component Did Mount");
+  }
+  componentDidUpdate() {
+    console.log("componnent Did update");
   }
 
+  componentWillUnmount() {
+    console.log("component will  unmount");
+  }
   render() {
-    // console.log(this.props.name + "Child render");
+    console.log(this.props.name + "Child render");
 
     const { name, location, avatar_url } = this.state.userInfo;
 
@@ -42,3 +49,23 @@ class UserClass extends React.Component {
 }
 
 export default UserClass;
+
+/*****
+ * Mounting lifeCycle
+constructor (dummy)
+render (dummy)
+<HTMl Dummy>
+ComponentdidMount 
+<APi call>
+<this.setState> -- state variale is updated 
+
+
+
+------ Update Cycle
+render(APi data)
+<HTMl LOaded with APi data>
+<ComponentDid Update>
+
+*/
+
+// Never compare you react lifecycle method  to functional component
