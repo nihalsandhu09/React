@@ -25,9 +25,11 @@ class UserClass extends React.Component {
     console.log(this.props.name + "component Did Mount");
   }
   componentDidUpdate() {
+    // evrytime states update it will called
     console.log("componnent Did update");
   }
 
+  // why do we unmount for better optimization
   componentWillUnmount() {
     console.log("component will  unmount");
   }

@@ -19,6 +19,7 @@ class About extends React.Component {
           name={"Nihal Sandhu (class)"}
           location={"UNA , himachal Pradesh"}
         />
+        {/* <User /> */}
       </div>
     );
   }

@@ -6,8 +6,21 @@ const User = (props) => {
   const { name } = props;
 
   useEffect(() => {
-    // APi Callls
+    // // APi Callls
+    // const timer = setInterval(() => {
+    //   // this wil be print again and again
+    //   console.log("namaste React Op ");
+    // }, 1000);
+    // console.log("useEffect");
+    // return () => {
+    //   // to clean up interval we have to unmount this and this function is called
+    //   clearInterval(timer);
+    //   console.log("useEffect return ");
+    // };
   }, []);
+
+  console.log("render");
+
   const increaseCount = () => {
     setCount(count + 1);
   };

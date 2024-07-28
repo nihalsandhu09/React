@@ -156,3 +156,14 @@ html,body{
     border: 1px solid black;
     
 }
+.menu{
+    width: 50vw;
+    
+}
+.res-menu-div{
+    display: flex;
+    gap: 20px ;
+    align-items: center;
+    margin-top: 10px ;
+    
+}

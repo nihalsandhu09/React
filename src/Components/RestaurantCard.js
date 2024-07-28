@@ -2,6 +2,7 @@ import { CDN_URL } from "../Utilis/constants";
 
 const RestaurantCard = (props) => {
   const { resData } = props;
+
   const {
     cloudinaryImageId,
     name,
@@ -15,6 +16,7 @@ const RestaurantCard = (props) => {
   // if (!resData || !resData.info) {
   //   return <div>Loading...</div>; // or return null, a spinner, or a placeholder
   // }
+
   return (
     <div className="res-card">
       <img

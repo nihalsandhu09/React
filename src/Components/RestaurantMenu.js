@@ -1,30 +1,14 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../Utilis/constants";
+import useRestaurantMenu from "../Utilis/useRestaurantMenu";
 import { CDN_URL } from "../Utilis/constants";
-const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
 
+const RestaurantMenu = () => {
   const { resId } = useParams();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    // const data = await fetch(
-    //   "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9351929&lng=77.62448069999999&restaurantId=425&submitAction=ENTER"
-    // );
-
-    const data = await fetch(
-      MENU_API + resId + "&catalog_qa=undefined&submitAction=ENTER"
-    );
-    const json = await data.json();
-    console.log(json);
-    setResInfo(json?.data);
-  };
-
+  const resInfo = useRestaurantMenu(resId);
+  console.log(resInfo);
   if (!resInfo) {
     return <Shimmer />;
   }
@@ -35,9 +19,32 @@ const RestaurantMenu = () => {
   //   resInfo?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.find(
   //     (c) => c.card?.itemCards
   //   )?.card?.itemCards || [];
-  const itemCards =
-    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
-      ?.card?.itemCards || [];
+
+  // const itemCards =resInfo?.cards[5].groupedCard.cardGroupMap.REGULAR.cards[2].card.card.itemCards
+  const findItemCards = (resInfo) => {
+    // Check if resInfo and cards exist
+    if (!resInfo?.cards) return [];
+
+    // Try to find the `itemCards` dynamically
+    for (let i = 0; i < resInfo.cards.length; i++) {
+      const groupedCard =
+        resInfo.cards[i]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+      if (groupedCard) {
+        for (let j = 0; j < groupedCard.length; j++) {
+          if (groupedCard[j]?.card?.card?.itemCards) {
+            return groupedCard[j].card.card.itemCards;
+          }
+        }
+      }
+    }
+
+    // If not found, return an empty array
+    return [];
+  };
+
+  // Use the function
+  const itemCards = findItemCards(resInfo);
+
   console.log(itemCards);
   return (
     <div className="menu">
@@ -49,14 +56,15 @@ const RestaurantMenu = () => {
       <h4> Menu</h4>
       <ul>
         {itemCards.map((item) => (
-          <div key={item.card.info.id}>
-            {item.card.info.name} -{"Rs"}
-            {item.card.info.price / 100}{" "}
+          <div className="res-menu-div" key={item.card.info.id}>
+            <div className="res-menu-info">
+              <h3 style={{ margin: 0 }}>{item.card.info.name} </h3> -{"Rs"}
+              {item.card.info.price / 100}{" "}
+            </div>
             <img
               className="res-menu-img"
               src={CDN_URL + item.card.info.imageId}
             ></img>
-            <hr></hr>
           </div>
         ))}
       </ul>
