@@ -144,8 +144,9 @@ html,body{
   color: inherit;
 }
  ul > div >  .res-menu-img{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
     
 
 }
@@ -158,12 +159,22 @@ html,body{
 }
 .menu{
     width: 50vw;
-    
+    margin: 0 auto;
 }
 .res-menu-div{
     display: flex;
     gap: 20px ;
     align-items: center;
-    margin-top: 10px ;
-    
+    margin-top: 20px ;
+    justify-content: space-between;
+    border: 1px solid #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.res-menu-info{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }

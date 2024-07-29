@@ -2,7 +2,7 @@
 //   <h1 className="heading "> with parenthisis </h1>
 // )
 
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
@@ -11,7 +11,18 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import Error from "./Components/Error";
 import RestaurantMenu from "./Components/RestaurantMenu";
+import Shimmer from "./Components/Shimmer";
+// import Grocery from "./Components/Grocery";
 
+// chunking
+// Code Spliting
+// dynmic budling
+// LAzy loading
+// on Demand Loading
+
+const Grocery = lazy(() => {
+  return import("./Components/Grocery");
+});
 const APPLayOut = () => {
   console.log(<Body></Body>);
 
@@ -45,6 +56,15 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurants/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<Shimmer></Shimmer>}>
+            {" "}
+            <Grocery />{" "}
+          </Suspense>
+        ),
       },
     ],
     errorElement: <Error />,

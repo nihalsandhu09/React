@@ -3,6 +3,8 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../Utilis/useOnlineStatus";
+
 const Body = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -63,6 +65,18 @@ const Body = () => {
     );
     setfilterRestaurant(filteredResults);
   };
+
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) {
+    return (
+      <h1>
+        {" "}
+        Looks like you're offline !! Please check your interent connection
+      </h1>
+    );
+  }
+
   return loading ? (
     <Shimmer></Shimmer>
   ) : (

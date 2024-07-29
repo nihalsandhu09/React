@@ -15,11 +15,6 @@ const RestaurantMenu = () => {
   const { name, cuisines, costForTwoMessage } =
     resInfo?.cards?.[2]?.card?.card?.info || {};
 
-  // const itemCards =
-  //   resInfo?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.find(
-  //     (c) => c.card?.itemCards
-  //   )?.card?.itemCards || [];
-
   // const itemCards =resInfo?.cards[5].groupedCard.cardGroupMap.REGULAR.cards[2].card.card.itemCards
   const findItemCards = (resInfo) => {
     // Check if resInfo and cards exist
@@ -58,8 +53,10 @@ const RestaurantMenu = () => {
         {itemCards.map((item) => (
           <div className="res-menu-div" key={item.card.info.id}>
             <div className="res-menu-info">
-              <h3 style={{ margin: 0 }}>{item.card.info.name} </h3> -{"Rs"}
+              <h3 style={{ margin: 0 }}>{item.card.info.name} </h3>
+              {"Rs"}
               {item.card.info.price / 100}{" "}
+              <p>{item.card.info.ratings.aggregatedRating.rating}</p>
             </div>
             <img
               className="res-menu-img"
