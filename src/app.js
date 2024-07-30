@@ -19,7 +19,7 @@ import Shimmer from "./Components/Shimmer";
 // dynmic budling
 // LAzy loading
 // on Demand Loading
-
+// dynamic import
 const Grocery = lazy(() => {
   return import("./Components/Grocery");
 });
