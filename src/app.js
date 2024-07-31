@@ -27,7 +27,7 @@ const APPLayOut = () => {
   console.log(<Body></Body>);
 
   return (
-    <div className="app">
+    <div className="app  ">
       <Header />
       {/** We will give some conditon if my path is slash we should render nody if / about we should have avout  if path is /conatct we should prvide contact we use outlet component*/}
       <Outlet />

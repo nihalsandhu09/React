@@ -80,12 +80,12 @@ const Body = () => {
   return loading ? (
     <Shimmer></Shimmer>
   ) : (
-    <div className="body">
+    <div className="body ">
       <div className="filter">
         <div className="search">
           <input
             type="text"
-            className="search-box"
+            className="border-transparent"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -101,7 +101,7 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="res-container">
+      <div className="res-container flex flex-wrap gap-10">
         {filterdRestaurant.map((restaurants) => (
           <Link
             className="link"
