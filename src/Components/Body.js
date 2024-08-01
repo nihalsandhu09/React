@@ -82,26 +82,31 @@ const Body = () => {
   ) : (
     <div className="body ">
       <div className="filter">
-        <div className="search">
+        <div className="search m-4 p-4 flex items-center flex-row justify-center">
           <input
             type="text"
-            className="border-transparent"
+            className=" border  rounded  px-4 w-full md:w-1/2 lg:w-1/3 h-10 outline-none bg-transparent"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
-          <button className="searc-btn " onClick={handleSearch}>
+          <button
+            className="px-2 py-1 bg-green-400 m-4 text-white font-bold rounded-md"
+            onClick={handleSearch}
+          >
             Search
           </button>
+          <button
+            className="px-2 py-1 bg-green-400 mt- text-white font-bold rounded-md flex "
+            onClick={filterTopRated}
+          >
+            Top Rated Restaurant
+          </button>
         </div>
-
-        <button className="filter-btn" onClick={filterTopRated}>
-          Top Rated Restaurant
-        </button>
       </div>
 
-      <div className="res-container flex flex-wrap gap-10">
+      <div className="res-container flex flex-wrap    justify-center ">
         {filterdRestaurant.map((restaurants) => (
           <Link
             className="link"
